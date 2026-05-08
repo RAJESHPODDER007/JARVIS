@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stability.AI Demo</title>
+    <style>
+        img {
+            width: 300px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+<h2>Stability.AI Image Generation</h2>
+<form id="genForm">
+    <input type="text" id="city" placeholder="Enter City" size="50" required />
+    <button type="submit">Generate</button>
+</form>
+
+<div id="results"></div>
+
+<script>
+    document.getElementById("genForm").addEventListener("submit", async function(e) {
+        e.preventDefault();
+        const city = document.getElementById("city").value;
+        const res = await fetch(`/ai/weather?city=${encodeURIComponent(city)}`);
+        const blob = await res.blob();
+        const imageUrl = URL.createObjectURL(blob);
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML = "";
+        const imageEl = document.createElement("img");
+        imageEl.src = imageUrl;
+        resultsDiv.appendChild(imageEl);
+    });
+</script>
+</body>
+</html>

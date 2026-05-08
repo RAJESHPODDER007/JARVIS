@@ -1,0 +1,1 @@
+For the current day give weather report for {city}

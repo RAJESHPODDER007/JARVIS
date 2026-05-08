@@ -1,0 +1,1 @@
+Travel plan for city: {city} and for {days} number of days

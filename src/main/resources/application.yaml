@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: ai-chatbot
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring-ai
+    username: postgres
+    password:
+    dirver-class-name: org.postgresql.Driver
+app:
+  documents:
+    travel-policy:
+      file:
+        path: documents/travel-policy.pdf
+    events:
+      file:
+        path: documents/Events_Holidays.pdf
